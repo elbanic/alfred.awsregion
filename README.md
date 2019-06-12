@@ -7,6 +7,8 @@ Text search method : substring match
 
 [AWS Region code](https://docs.aws.amazon.com/general/latest/gr/rande.html)
 
+[Download Alfred workflow](http://www.packal.org/workflow/aws-region-codes)
+
 ## example
 
 1. type `region`
