@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.elbanic.copyawsregion</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>2A751056-87B7-4408-90D6-B868021760CE</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string>elbanic</string>
+	<key>description</key>
+	<string>Search an AWS region code</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>AWS Region Codes</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>region</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Finding processes...</string>
+				<key>script</key>
+				<string>#! /usr/local/bin/python
+# -*- coding:utf-8 -*-
+
+dic = {"us-east-1" : "US, IAD, N. Virginia",
+    "us-east-2" : "US, CMH, Ohio",
+    "us-west-1" : "US, SFO, N. California",
+    "us-west-2" : "US, PDX, Oregon",
+    "ca-central-1" : "Canada, YUL, Central",
+    "eu-central-1" : "EU, FRA, Frankfurt",
+    "eu-west-1" : "EU, DUB, Ireland",
+    "eu-west-2" : "EU, LHR, London",
+    "eu-west-3" : "EU, CDG, Paris",
+    "eu-north-1" : "EU, ARN, Stockholm",
+    "ap-east-1" : "Asia, HKG, Hongkong",
+    "ap-northeast-1" : "Asia, NRT, Tokyo",
+    "ap-northeast-2" : "Asia, ICN, Seoul",
+    "ap-northeast-3" : "Asia, KIX, Osaka",
+    "ap-southeast-1" : "Asia, SIN, Singapore",
+    "ap-southeast-2" : "Asia, SYD, Sydney",
+    "ap-south-1" : "Asia, BOM, Mumbai",
+    "sa-east-1" : "South America, GRU, Sao Paulo",
+    "cn-north-1" : "China, BJS, Beijing",
+    "cn-northwest-1" : "China, ZHY, Ningxia"}
+
+xmlString = """&lt;?xml version="1.0"?&gt; &lt;items&gt;"""
+cnt = 0
+for i in dic:
+    if "{query}".lower() in str(dic[i]).lower() or "{query}".lower() in str(i).lower():
+		cnt += 1
+		xmlString += """&lt;item uid="desktop" arg="%s" valid="YES" autocomplete="Desktop" type="file"&gt;
+				&lt;title&gt;%s&lt;/title&gt;
+			&lt;/item&gt;""" % (i + " : " + dic[i], i  + " : " + dic[i])
+
+if "{query}" == "all":
+	for i in dic:
+	    xmlString += """&lt;item uid="desktop" arg="%s" valid="YES" autocomplete="Desktop" type="file"&gt;
+				&lt;title&gt;%s&lt;/title&gt;
+			&lt;/item&gt;""" % (i + " : " + dic[i], i  + " : " + dic[i])
+elif cnt == 0:
+    xmlString += """&lt;item uid="desktop" arg="no result" valid="YES" autocomplete="Desktop" type="file"&gt;
+				&lt;title&gt;No Result&lt;/title&gt;
+			&lt;/item&gt;"""
+
+xmlString += """&lt;/items&gt;"""
+print xmlString</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Start typing a process name...</string>
+				<key>title</key>
+				<string>AWS Region Codes</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>2A751056-87B7-4408-90D6-B868021760CE</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>#Description
+Kill Process is an Alfred 2 workflow that makes it easy to kill misbehaving processes. It is, in essence, a way to easily find processes by name and kill them using `kill -9`.
+
+#Features
+* Autocompletes process names
+* Learns and prioritizes processes you kill frequently
+* Shows icons when possible
+* Shows CPU usage
+* Shows process paths
+* Ignores case
+* Kills all processes with matching names on &lt;kbd&gt;cmd&lt;/kbd&gt;+&lt;kbd&gt;return&lt;/kbd&gt;
+* Supports [Alleyoop updating](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/).
+
+![screenshot: `kill it`](screenshot.png)
+
+#Usage
+1. Type `kill` into Alfred followed by a space.
+2. Begin typing the name of the process you want to kill.
+3. When you see the process you want to kill, select it from the list as usual.
+4. Press return to kill the selected process.  
+Alternatively, press &lt;kbd&gt;cmd&lt;/kbd&gt;+&lt;kbd&gt;return&lt;/kbd&gt; to kill all processes with the same name as the selected one.
+
+#Installation
+Open `Kill Process.alfredworkflow` and Alfred will walk you through the installation process. No configuration is necessary.
+
+#Making Changes
+##Editing the Script
+The ruby script that powers Kill Process is `script.rb`. For testing, add a value for `theQuery` in the first line. Be sure that the subsequent `theQuery = "{query}"` is commented out. This allows you to hard-code a search query instead of taking what the user has typed from Alfred. See the comments in the script for more info.
+
+##Applying Changes to the Workflow
+1. Be sure that the first line in the script setting `theQuery` is commented out and that the second line (`theQuery = "{query}"`) is not commented out.
+2. Open the Workflows tab of Alfred's Preferences.
+3. Select the Kill Process workflow on the left.
+4. Double click the first box ('kill Script Filter').
+5. Paste your script into the 'Script' box at the bottom.
+6. Click Save.
+
+#License
+[WTFPL](http://www.wtfpl.net/about/), of course.</string>
+	<key>uidata</key>
+	<dict>
+		<key>2A751056-87B7-4408-90D6-B868021760CE</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<real>170</real>
+		</dict>
+	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>1.0</string>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
