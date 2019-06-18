@@ -27,9 +27,9 @@
 	<key>description</key>
 	<string>View and Copy AWS region codes</string>
 	<key>disabled</key>
-	<false/>
+	<true/>
 	<key>name</key>
-	<string>AWS Region Codes</string>
+	<string>AWS Region Codes-v1.2</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -106,17 +106,17 @@ cnt = 0
 for i in dic:
     if "{query}".lower() in str(dic[i]).lower() or "{query}".lower() in str(i).lower():
 		cnt += 1
-		xmlString += """&lt;item uid="desktop" arg="%s" valid="YES" autocomplete="Desktop" type="file"&gt;
+		xmlString += """&lt;item uid="desktop" arg="%s" valid="YES" autocomplete="%s" type="file"&gt;
 				&lt;title&gt;%s&lt;/title&gt;
-			&lt;/item&gt;""" % (i + " : " + dic[i], i  + " : " + dic[i])
+			&lt;/item&gt;""" % (i + " : " + dic[i], i, i  + " : " + dic[i])
 
 if "{query}" == "all":
 	for i in dic:
-	    xmlString += """&lt;item uid="desktop" arg="%s" valid="YES" autocomplete="Desktop" type="file"&gt;
+	    xmlString += """&lt;item uid="desktop" arg="%s" valid="YES" autocomplete="%s" type="file"&gt;
 				&lt;title&gt;%s&lt;/title&gt;
-			&lt;/item&gt;""" % (i + " : " + dic[i], i  + " : " + dic[i])
+			&lt;/item&gt;""" % (i + " : " + dic[i], i, i  + " : " + dic[i])
 elif cnt == 0:
-    xmlString += """&lt;item uid="desktop" arg="no result" valid="YES" autocomplete="Desktop" type="file"&gt;
+    xmlString += """&lt;item uid="desktop" arg="no result" valid="YES" autocomplete="No Result" type="file"&gt;
 				&lt;title&gt;No Result&lt;/title&gt;
 			&lt;/item&gt;"""
 
@@ -166,7 +166,7 @@ Text search method : substring match</string>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.0</string>
+	<string>1.2</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>
