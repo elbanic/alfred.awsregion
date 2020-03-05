@@ -99,7 +99,8 @@ dic = {"us-east-1" : "US, IAD, N. Virginia",
     "ap-south-1" : "Asia, BOM, Mumbai",
     "sa-east-1" : "South America, GRU, Sao Paulo",
     "cn-north-1" : "China, BJS, Beijing",
-    "cn-northwest-1" : "China, ZHY, Ningxia"}
+    "cn-northwest-1" : "China, ZHY, Ningxia",
+    "me-south-1" : "Middle East, BAH, Bahrain"}
 
 xmlString = """&lt;?xml version="1.0"?&gt; &lt;items&gt;"""
 cnt = 0
