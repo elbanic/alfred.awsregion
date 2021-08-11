@@ -90,6 +90,7 @@ dic = {"us-east-1" : "US, IAD, N. Virginia",
     "eu-west-2" : "EU, LHR, London",
     "eu-west-3" : "EU, CDG, Paris",
     "eu-north-1" : "EU, ARN, Stockholm",
+    "eu-south-1" : "EU, MXP, Milan",
     "ap-east-1" : "Asia, HKG, Hongkong",
     "ap-northeast-1" : "Asia, NRT, Tokyo",
     "ap-northeast-2" : "Asia, ICN, Seoul",
@@ -99,7 +100,9 @@ dic = {"us-east-1" : "US, IAD, N. Virginia",
     "ap-south-1" : "Asia, BOM, Mumbai",
     "sa-east-1" : "South America, GRU, Sao Paulo",
     "cn-north-1" : "China, BJS, Beijing",
-    "cn-northwest-1" : "China, ZHY, Ningxia"}
+    "cn-northwest-1" : "China, ZHY, Ningxia",
+    "af-south-1" : "Africa, CPT, Cape Town",
+    "me-south-1" : "Middle East, BAH, Bahrain"}
 
 xmlString = """&lt;?xml version="1.0"?&gt; &lt;items&gt;"""
 cnt = 0
